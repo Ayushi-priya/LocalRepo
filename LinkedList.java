@@ -37,7 +37,8 @@ public class LinkedList {
     public static Node addInBetween(int data, Node head, int pos) {
         Node newNode = new Node(data);
         if(pos == 0) {
-            addFirst(data, head);
+            head = addFirst(data, head);
+            return head;
         } 
         int i = 0;
         Node temp = head;
@@ -72,6 +73,24 @@ public class LinkedList {
         return head;
     }
 
+    public static Node removeInBetween(Node head, int pos) {
+        int i = 0;
+        Node temp = head.next;
+        Node prev = head;
+        if(pos == 0) {
+            head = removeFirst(head);
+            return head;
+        }
+        while(i != pos-1) {
+            prev = temp;
+            temp = temp.next;
+        }
+        prev.next = temp.next;
+        temp.next = null;
+        temp = prev;
+        return head;
+    }
+
     public static void sizeList(Node head) {
         Node temp = head;
         int count = 0;
@@ -95,11 +114,16 @@ public class LinkedList {
         Node head = addFirst(1, null);
         head = addFirst(0, head);
         head = addLast(3, head);
+        head = addLast(4, head);
+        head = addLast(5, head);
+        head = addLast(6, head);
+        head = addLast(7, head);
         head = addInBetween(2, head, 2);
         printList(head);
         // head = removeFirst(head);
-        head = removeLast(head);
-        head = removeLast(head);
+        // head = removeLast(head);
+        // head = removeLast(head);
+        head = removeInBetween(head, 0);
         printList(head);
         sizeList(head);
     }
