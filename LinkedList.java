@@ -50,6 +50,14 @@ public class LinkedList {
         return head;
     }  
 
+    public static Node removeFirst(Node head) {
+        if(head == null) {
+            System.out.println("Nothing to delete");
+        }
+        head = head.next;
+        return head;
+    }
+
     public static void sizeList(Node head) {
         Node temp = head;
         int count = 0;
@@ -74,6 +82,8 @@ public class LinkedList {
         head = addFirst(0, head);
         head = addLast(3, head);
         head = addInBetween(2, head, 2);
+        printList(head);
+        head = removeFirst(head);
         printList(head);
         sizeList(head);
     }
