@@ -53,8 +53,22 @@ public class LinkedList {
     public static Node removeFirst(Node head) {
         if(head == null) {
             System.out.println("Nothing to delete");
+            return head;
         }
         head = head.next;
+        return head;
+    }
+
+    public static Node removeLast(Node head) {
+        if(head == null) {
+            System.out.println("Nothing to delete");
+            return head;
+        }
+        Node temp = head;
+        while(temp.next.next != null) {
+            temp=temp.next;
+        }
+        temp.next=null;
         return head;
     }
 
@@ -83,7 +97,9 @@ public class LinkedList {
         head = addLast(3, head);
         head = addInBetween(2, head, 2);
         printList(head);
-        head = removeFirst(head);
+        // head = removeFirst(head);
+        head = removeLast(head);
+        head = removeLast(head);
         printList(head);
         sizeList(head);
     }
