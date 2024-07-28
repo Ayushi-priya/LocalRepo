@@ -91,7 +91,7 @@ public class LinkedList {
         return head;
     }
 
-    public static void sizeList(Node head) {
+    public static int sizeList(Node head) {
         Node temp = head;
         int count = 0;
         while(temp != null) {
@@ -99,6 +99,7 @@ public class LinkedList {
             count++;
         }
         System.out.println(count);
+        return count;
     }
 
     public static void printList(Node head) {
@@ -108,6 +109,74 @@ public class LinkedList {
             temp = temp.next;
         }
         System.out.println("null");
+    }
+
+    public static int recSearch(Node head, int key) {
+        if(head == null) {
+            return -1;
+        }
+        if(head.data == key) {
+            return 1;
+        }
+        int idx = recSearch(head.next, key);
+        if(idx == -1) {
+            return -1;
+        }
+        return idx+1;
+    }
+
+    public static Node reverseList(Node head) {
+        Node prev=null, curr=head, next;
+        while(curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return head = prev;
+    }
+
+    public static void removeNthFromEnd(Node head, int n) {
+        int size = sizeList(head);
+        Node temp = head;
+        int start = 1;
+        int end = size - n;
+        if(n == 0) {
+            System.out.println("Nothimg to delete");
+            return;
+        }
+        while(start < end) {
+            start++;
+            temp = temp.next;
+        }
+        temp.next = temp.next.next;
+    }
+
+    public static Node findMidOfList(Node head) {
+        Node slow = head;
+        Node fast = head;
+        while(fast != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    public static void checkPalindrome(Node head) {
+        Node mid = findMidOfList(head);
+        printList(mid);
+        Node reverse = reverseList(mid);
+        printList(reverse);
+        Node temp = head;
+        while(reverse != null) {
+            if(temp.data != reverse.data) {
+                System.out.println("Not Palindrome");
+                return;
+            }
+            temp = temp.next;
+            reverse = reverse.next;
+        }
+        System.out.println("Palindrome");
     }
 
     public static void main(String args[]) {
@@ -126,5 +195,16 @@ public class LinkedList {
         head = removeInBetween(head, 0);
         printList(head);
         sizeList(head);
+        System.out.println(recSearch(head, 6));
+        head = reverseList(head);
+        printList(head);
+        removeNthFromEnd(head, 1);
+        printList(head);
+
+        // head = addLast(2, head);
+        // head = addLast(2, head);
+        // head = addLast(1, head);
+        printList(head);
+        checkPalindrome(head);
     }
 }
