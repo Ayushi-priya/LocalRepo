@@ -53,7 +53,4 @@ public class StackB {
         }
     }
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> main
