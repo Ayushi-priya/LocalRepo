@@ -163,6 +163,10 @@ public class LinkedList {
     }
 
     public static void checkPalindrome(Node head) {
+        if(head == null || head.next == null) {
+            System.out.println("Palindrome");
+            return;
+        }
         Node mid = findMidOfList(head);
         printList(mid);
         Node reverse = reverseList(mid);
@@ -181,29 +185,29 @@ public class LinkedList {
 
     public static void main(String args[]) {
         Node head = addFirst(1, null);
-        head = addFirst(0, head);
-        head = addLast(3, head);
-        head = addLast(4, head);
-        head = addLast(5, head);
-        head = addLast(6, head);
-        head = addLast(7, head);
-        head = addInBetween(2, head, 2);
-        printList(head);
-        // head = removeFirst(head);
-        // head = removeLast(head);
-        // head = removeLast(head);
-        head = removeInBetween(head, 0);
-        printList(head);
-        sizeList(head);
-        System.out.println(recSearch(head, 6));
-        head = reverseList(head);
-        printList(head);
-        removeNthFromEnd(head, 1);
-        printList(head);
-
-        // head = addLast(2, head);
-        // head = addLast(2, head);
-        // head = addLast(1, head);
+        // head = addFirst(0, head);
+        // head = addLast(3, head);
+        // head = addLast(4, head);
+        // head = addLast(5, head);
+        // head = addLast(6, head);
+        // head = addLast(7, head);
+        // head = addInBetween(2, head, 2);
+        // printList(head);
+        // // head = removeFirst(head);
+        // // head = removeLast(head);
+        // // head = removeLast(head);
+        // head = removeInBetween(head, 0);
+        // printList(head);
+        // sizeList(head);
+        // System.out.println(recSearch(head, 6));
+        // head = reverseList(head);
+        // printList(head);
+        // removeNthFromEnd(head, 1);
+        // printList(head);
+        
+        head = addLast(2, head);
+        head = addLast(2, head);
+        head = addLast(1, head);
         printList(head);
         checkPalindrome(head);
     }
