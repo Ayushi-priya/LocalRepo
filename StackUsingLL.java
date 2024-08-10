@@ -1,6 +1,6 @@
 package LocalRepo;
 
-public class StckUsingLL {
+public class StackUsingLL {
     static class Node {
         int data;
         Node next;
@@ -11,9 +11,16 @@ public class StckUsingLL {
         }
     }
 
+    public static boolean isEmpty(Node head) {
+        if(head == null) {
+            return true;
+        }
+        return false;
+    }
+
     public static Node push(int data, Node head) {
         Node newNode = new Node(data);
-        if(head == null) {
+        if(isEmpty(head)) {
             head = newNode;
             return head;
         }
@@ -23,18 +30,18 @@ public class StckUsingLL {
     }
 
     public static Node pop(Node head) {
-        if(head == null) {
+        if(isEmpty(head)) {
             System.out.println("Stack underflow");
             return head;
         }
-        int temp = head.data;
-        System.out.println("popped data: " + temp);
+        int top = head.data;
+        System.out.println("popped data: " + top);
         head = head.next;
         return head;
     }
 
     public static void printList(Node head) {
-        if(head == null) {
+        if(isEmpty(head)) {
             System.out.println("Stack underflow");
             return; 
         }
@@ -46,6 +53,18 @@ public class StckUsingLL {
         System.out.println();
     }
 
+    public static Node pushAtBottom(int data, Node head) {
+        if(isEmpty(head)) {
+            head = push(data, head);
+            return head;
+        }
+        int top = head.data;
+        head = pop(head);
+        head = pushAtBottom(data, head);
+        head = push(top, head);
+        return head;
+    }
+
     public static void main(String[] args) {
         Node head = push(0, null);
         head = push(1, head);
@@ -55,14 +74,9 @@ public class StckUsingLL {
         head = push(5, head);
         head = push(6, head);
         printList(head);
-        head = pop(head);
-        head = pop(head);
-        head = pop(head);
-        head = pop(head);
-        head = pop(head);
-        head = pop(head);
-        head = pop(head);
-        head = pop(head);
+        head = pushAtBottom(7, head);
+        // head = pop(head);
+        // head = pop(head);
         printList(head);
     }
 }
